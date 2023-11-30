@@ -13,7 +13,6 @@ html, body{
   #camera--view, #camera--sensor, #camera--output{
       transform: scaleX(-1);
       filter: FlipH;
-      justify-content: right;
   }
   #camera--trigger{
       width: 200px;
@@ -54,3 +53,6 @@ html, body{
       z-index: 2;
   }
 
+#post--las-photo, #descricao, #camera--trigger, #postadas {
+    justify-content: right;
+}
