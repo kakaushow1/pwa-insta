@@ -5,8 +5,8 @@ html, body{
     width: 100%;
   }
   #camera, #camera--view, #camera--sensor, #camera--output{
-      height: 50%;
-      width: 50%;
+      height: 100%;
+      width: 100%;
       object-fit: cover;
   }
   #camera--view, #camera--sensor, #camera--output{
