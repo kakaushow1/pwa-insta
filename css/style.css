@@ -5,7 +5,6 @@ html, body{
     width: 100%;
   }
   #camera, #camera--view, #camera--sensor, #camera--output{
-      position: fixed;
       height: 50%;
       width: 50%;
       object-fit: cover;
@@ -53,6 +52,6 @@ html, body{
       z-index: 2;
   }
 
-#post--las-photo, #descricao, #camera--trigger, #postadas {
+#descricao, #postadas {
     justify-content: right;
 }
