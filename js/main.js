@@ -71,9 +71,6 @@ photoPost.onclick = function () {
     descricaoElement.textContent = `Descrição: ${foto.descricao}`;
     lugarPostar.appendChild(descricaoElement);
   });
-
-  // Exemplo: Exibir um alerta com a mensagem "Fotos postadas!"
-  alert('Fotos postadas!');
 };
 
 // Carrega imagem da câmera quando a janela carregar
