@@ -75,8 +75,6 @@ photoPost.onclick = function () {
     descricaoElement.textContent = `Descrição: ${ultimaFoto.descricao}`;
     lugarPostar.appendChild(descricaoElement);
 
-    // Exemplo: Exibir um alerta com a mensagem "Última foto postada!"
-    alert('Última foto postada!');
   } else {
     // Exemplo: Exibir um alerta se não houver fotos tiradas
     alert('Nenhuma foto para postar.');
