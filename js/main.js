@@ -56,22 +56,33 @@ cameraTrigger.onclick = function () {
 };
 
 // Função para postar a última foto
+// Função para postar a última foto
 photoPost.onclick = function () {
   // Limpa a div antes de adicionar as novas imagens
   lugarPostar.innerHTML = '';
 
-  // Itera sobre o array de fotos e cria elementos de imagem e descrição
-  fotosTiradas.forEach(function (foto) {
+  // Verifica se há pelo menos uma foto tirada
+  if (fotosTiradas.length > 0) {
+    const ultimaFoto = fotosTiradas[fotosTiradas.length - 1];
+
+    // Cria elemento de imagem para a última foto
     const imgElement = document.createElement('img');
-    imgElement.src = foto.url;
+    imgElement.src = ultimaFoto.url;
     lugarPostar.appendChild(imgElement);
 
     // Adiciona a descrição como um parágrafo abaixo da foto
     const descricaoElement = document.createElement('p');
-    descricaoElement.textContent = `Descrição: ${foto.descricao}`;
+    descricaoElement.textContent = `Descrição: ${ultimaFoto.descricao}`;
     lugarPostar.appendChild(descricaoElement);
-  });
+
+    // Exemplo: Exibir um alerta com a mensagem "Última foto postada!"
+    alert('Última foto postada!');
+  } else {
+    // Exemplo: Exibir um alerta se não houver fotos tiradas
+    alert('Nenhuma foto para postar.');
+  }
 };
+
 
 // Carrega imagem da câmera quando a janela carregar
 window.addEventListener('load', cameraStart, false);
