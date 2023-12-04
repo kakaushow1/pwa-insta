@@ -3,55 +3,86 @@ html, body{
     padding: 0;
     height: 100%;
     width: 100%;
+    background-color: black;
   }
-  #camera, #camera--view, #camera--sensor, #camera--output{
-      height: 50%;
-      width: 50%;
-      object-fit: cover;
+  h1{
+    text-align: center;
+    color:#c8dbf0
+  }
+  
+  
+  #camera{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    
+}
+  
+  #camera--view, #camera--sensor{
+   
+    max-width: 70%;
+    object-fit: cover;
+    transform: scaleX(-1);
+    filter: FlipH;
+    margin-top: 350px;
+    border-radius: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  #camera--output{
+    margin-top: 10px;
   }
   #camera--view, #camera--sensor, #camera--output{
       transform: scaleX(-1);
       filter: FlipH;
   }
-  #camera--trigger{
-      width: 200px;
-      background-color: black;
-      color: white;
-      font-size: 16px;
-      border-radius: 30px;
-      border: none;
-      padding: 15px 20px;
-      text-align: center;
-      box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-      position: fixed;
-      bottom: 30px;
-      left: calc(50% - 100px);
-  }
+  #camera--trigger
+   {
+     border: none;
+    border-radius: 50%;
+    background-color: #c8dbf0; /* Cor de fundo do botão (substitua pela cor desejada) */
+    color: #fff; /* Cor do texto do botão (substitua pela cor desejada) */
+    padding: 25px; /* Ajuste conforme necessário */
+    cursor: pointer;
+    display: inline-block;
+    
+    }
   #post--last-photo{
     width: 200px;
-      background-color: black;
-      color: white;
-      font-size: 16px;
-      border-radius: 30px;
-      border: none;
-      padding: 15px 20px;
-      text-align: center;
-      box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-      position: fixed;
-      bottom: 30px;
-      left: calc(25% - 100px);  
-  }
-  .taken{
-      height: 100px!important;
-      width: 100px!important;
-      transition: all 0.5s ease-in;
-      border: solid 3px white;
-      box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-      top: 20px;
-      right: 20px;
-      z-index: 2;
-  }
+  background-color:  #c8dbf0;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  border-radius: 30px;
+  border: none;
+  padding: 15px 20px;
+  text-align: center;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px; /* Adiciona espaçamento entre os botões */
+  cursor: pointer;
+  margin: 0 auto; /* Adiciona margem automática para centralizar na horizontal */
 
-#descricao, #postadas {
+  }
+  
+
+#descricao{
+    padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+  border-radius: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ color: black;
+ 
+}
+
+ #postadas {
     justify-content: right;
+    border-radius: 90px;
+    color: #fff;
+}
+ #last-photo{
+   border-radius: 90px;
 }

@@ -14,26 +14,31 @@
 </head>
 
 <body>
-  <!-- Camera -->
+  <div id="card">
+  <h1>KL Fotos📸</h1>
   <main id="camera">
     <!-- Camera sensor (lente) -->
     <canvas id="camera--sensor"></canvas>
     <!-- Camera view (visualização) -->
     <video id="camera--view" autoplay playsinline></video>
+     <!-- Input para a descrição -->
+     <input type="text" id="descricao" placeholder="Em que você esta pensando?" >
     <!-- Camera output -->
     <img src="//:0" alt="" id="camera--output">
     <!-- Camera botão de tirar foto -->
-    <button id="camera--trigger">tirar foto</button>
+    <button id="camera--trigger">📸</button>
     <!-- Botão de postar última foto -->
     <button id="post--last-photo">Postar última foto</button>
     <!-- Elemento para exibir a última foto -->
     <img src="" alt="" id="last-photo">
-    <!-- Input para a descrição -->
-    <input type="text" id="descricao" placeholder="Digite uma descrição">
     <!-- Div para exibir as fotos postadas -->
-    <div id="postadas"></div>
+    <div id="postadas">
+     
+    </div>
     <script src="js/main.js" type="module"></script>
   </main>
+</div>
+ 
 </body>
 
 </html>

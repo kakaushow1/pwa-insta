@@ -72,7 +72,7 @@ photoPost.onclick = function () {
 
     // Adiciona a descrição como um parágrafo abaixo da foto
     const descricaoElement = document.createElement('p');
-    descricaoElement.textContent = `Descrição: ${ultimaFoto.descricao}`;
+    descricaoElement.textContent = `@klfotos: ${ultimaFoto.descricao}`;
     lugarPostar.appendChild(descricaoElement);
 
   } else {
