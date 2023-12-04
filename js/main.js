@@ -27,19 +27,6 @@ const cameraView = document.querySelector('#camera--view'),
   lugarPostar = document.getElementById('postadas'),
   descricaoInput = document.getElementById('descricao');
 
-// Estabelecendo o acesso à câmera e inicializando a visualização
-function cameraStart() {
-  navigator.mediaDevices
-    .getUserMedia(constraints)
-    .then(function (stream) {
-      let track = stream.getTracks()[0]; // Correção: getTracks é uma função
-      cameraView.srcObject = stream;
-    })
-    .catch(function (error) {
-      console.error('Ocorreu um Erro.', error);
-    });
-}
-
 // Função para tirar foto
 cameraTrigger.onclick = function () {
   cameraSensor.width = cameraView.videoWidth;
@@ -49,13 +36,16 @@ cameraTrigger.onclick = function () {
   cameraOutput.classList.add('taken');
 
   // Adiciona a URL da foto ao array
-  fotosTiradas.push({ url: cameraOutput.src, descricao: descricaoInput.value });
+  const novaFoto = { url: cameraOutput.src, descricao: descricaoInput.value };
+  fotosTiradas.push(novaFoto);
 
   // Limpa o campo de descrição
   descricaoInput.value = '';
+
+  // Armazena a última foto no IndexedDB
+  armazenarUltimaFoto(novaFoto);
 };
 
-// Função para postar a última foto
 // Função para postar a última foto
 photoPost.onclick = function () {
   // Limpa a div antes de adicionar as novas imagens
@@ -81,6 +71,67 @@ photoPost.onclick = function () {
   }
 };
 
-
 // Carrega imagem da câmera quando a janela carregar
 window.addEventListener('load', cameraStart, false);
+
+// Função para estabelecer o acesso à câmera e inicializar a visualização
+function cameraStart() {
+  navigator.mediaDevices
+    .getUserMedia(constraints)
+    .then(function (stream) {
+      let track = stream.getTracks()[0]; // Correção: getTracks é uma função
+      cameraView.srcObject = stream;
+    })
+    .catch(function (error) {
+      console.error('Ocorreu um Erro.', error);
+    });
+}
+
+// Função para armazenar a última foto no IndexedDB
+function armazenarUltimaFoto(novaFoto) {
+  // Abre ou cria um banco de dados chamado 'fotosDB' com a versão 1
+  const request = indexedDB.open('fotosDB', 1);
+
+  // Configura o banco de dados e armazena a última foto quando for criado ou atualizado
+  request.onupgradeneeded = function (event) {
+    const db = event.target.result;
+
+    // Cria um object store chamado 'fotos' com uma chave autoincrementável
+    const objectStore = db.createObjectStore('fotos', { autoIncrement: true });
+
+    // Adiciona a última foto ao object store
+    objectStore.add(novaFoto);
+  };
+
+  // Manipula eventos de sucesso ou erro na abertura do banco de dados
+  request.onsuccess = function (event) {
+    const db = event.target.result;
+
+    // Abre uma transação de leitura e gravação no object store 'fotos'
+    const transaction = db.transaction(['fotos'], 'readwrite');
+
+    // Obtém o object store 'fotos'
+    const objectStore = transaction.objectStore('fotos');
+
+    // Limpa todos os registros existentes
+    objectStore.clear();
+
+    // Adiciona a última foto ao object store
+    objectStore.add(novaFoto);
+
+    // Completa a transação
+    transaction.oncomplete = function () {
+      console.log('Última foto armazenada com sucesso no IndexedDB.');
+    };
+
+    // Manipula erros na transação
+    transaction.onerror = function (error) {
+      console.error('Erro ao armazenar a última foto no IndexedDB:', error);
+    };
+  };
+
+  // Manipula erros na abertura do banco de dados
+  request.onerror = function (event) {
+    console.error('Erro ao abrir o banco de dados:', event.target.error);
+  };
+}
